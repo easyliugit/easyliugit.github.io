@@ -8,3 +8,5 @@ GitHub 除了提供免費的 Git Server 外，如果推上去的分支的名字�
 4. 不像 Repository 有 Private 的設定，所有的 GitHub Pages 都是公開的，甚至放在 Private 專案裡，頁面也是公開的。
 
 整體上來說，GitHub Pages 的優點還是多於缺點，至少它穩定、安全又沒收你錢。接著就試試看如何把頁面放上去吧。
+
+[使用 GitHub 免費製作個人網站 - 為你自己學 Git | 高見龍](https://gitbook.tw/chapters/github/using-github-pages)
