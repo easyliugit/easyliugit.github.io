@@ -1,4 +1,4 @@
-# [我的 GitHub 個人網站 for easyliugit](https://easyliugit.github.io)
+# 我的 GitHub 個人網站:[](https://easyliugit.github.io)
 
 ## 方法1.[使用 GitHub 免費製作個人網站 - 為你自己學 Git | 高見龍](https://gitbook.tw/chapters/github/using-github-pages)
 
