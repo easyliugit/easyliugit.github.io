@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alpha 編織一個網站的夢</title>
+  <!-- Bootstrap’s CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <!-- Bootstrap’s icon -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css"
+    integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/vttube.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+
+      <div class="container-fluid">
+        <a class="navbar-brand" href="./index.html">
+          <i class="bi bi-person-video3"></i>
+          Alpha 編織一個網站的夢
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">主選單</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link" href="./about.html">關於我</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./portfolio.html">作品集</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">職訓影音日記</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  更多內容
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="./blog.html">隨手筆記</a></li>
+                  <li><a class="dropdown-item disabled" href="#">網頁設計教學</a></li>
+                  <li><a class="dropdown-item" href="./followme.html">留言板</a></li>
+                </ul>
+              </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+              <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false" data-bs-auto-close="outside">
+                登入管理
+              </button>
+              <form class="dropdown-menu dropdown-menu-lg-end p-4">
+                <div class="mb-3">
+                  <label for="exampleDropdownFormEmail2" class="form-label">帳號</label>
+                  <input type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="username">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleDropdownFormPassword2" class="form-label">密碼</label>
+                  <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                    <label class="form-check-label" for="dropdownCheck2">
+                      記住我
+                    </label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">登入</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <div id="banner">
+    <div class="row justify-content-center align-items-center text" id="people">
+      <div class="col-lg text-center text-white pt-3">
+        <h1>職訓影音日記</h1>
+        <p>職業訓練結訓人數，泰山職業訓練場介紹，記錄學習進度、心得與感想。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Dashboard -->
+    <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">公立職訓機構自辦訓練結訓人數</h1>
+      <p class="lead">勞動力發展署北基宜花金馬分署 / 職前</p>
+    </div>
+    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+    <!-- ajax json -->
+    <hr>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4" id="ajaxGovts">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">公立職訓機構自辦訓練結訓人數</h5>
+            <p class="card-text">勞動力發展署北基宜花金馬分署 / 職前</p>
+            <div class="progress">
+              <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 25%;"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">男 25%</div>
+            </div>
+            <p></p>
+            <div class="progress">
+              <div class="progress-bar bg-danger" role="progressbar" aria-label="Example with label" style="width: 75%;"
+                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">女 75%</div>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">班次</li>
+            <li class="list-group-item">人數</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 社群 -->
+    <!-- https://developers.facebook.com/docs/plugins/page-plugin -->
+    <hr>
+    <div class="row row-cols-1 row-cols-lg-2 g-4">
+      <!-- <div class="col">
+            <h2>Web</h2>
+            <p class="lead">勞動力發展署北基宜花金馬分署網頁介紹</p>
+            <iframe height="315" src="https://tkyhkm.wda.gov.tw/cp.aspx?n=C1AB93E4838E85E3#CCMS_Content"
+                frameborder="0"></iframe>
+        </div> -->
+      <div class="col">
+        <h2>Youtube</h2>
+        <p class="lead">職業訓練職類技能介紹 PHP資料庫網頁設計職類</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/DzN1czwBaK4" title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
+      <!-- 泰山職業訓練場 -->
+      <!-- <hr> -->
+      <div class="row">
+        <div class="col-md-12 mt-3">
+          <h2>泰山職業訓練場</h2>
+        </div>
+        <div class="col-md-5">
+          <img src="./img/followme_tsvts.jpg" class="img-fluid img-thumbnail">
+          <h5>交通位置描述：</h5>
+          <p class="lead">位於明志科技大學校內，由工專路進入明志校內，沿明一路/泰山職訓中心路標而上，約800公尺。</p>
+          <p>地址：243新北市泰山區貴子里致遠新村55之1號</p>
+          <p>電話：0229018274
+          </p>
+        </div>
+        <div class="col-md-7">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.703649799049!2d121.41732691500657!3d25.04412928396768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7bec9ad74b1%3A0xa639904a89f26435!2z5Yue5YuV6YOo5Yue5YuV5Yqb55m85bGV572y5YyX5Z-65a6c6Iqx6YeR6aas5YiG572y5rOw5bGx6IG35qWt6KiT57e05aC0!5e0!3m2!1szh-TW!2stw!4v1659877947865!5m2!1szh-TW!2stw"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <nav class="navbar sticky-top bg-light" style="top: 3.5rem;">
+    <div class="container-fluid">
+      <a class="btn btn-primary active" aria-current="page" data-bs-toggle="offcanvas" href="#offcanvasExample"
+        role="button" aria-controls="offcanvasExample">
+        週記選單
+      </a>
+    </div>
+  </nav> -->
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">週記選單</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div id="navbar-example3" class="offcanvas-body">
+      <ul class="list-group">
+        <!-- <a class="list-group-item" href="#card-title26">課程介紹</a> -->
+        <a class="list-group-item" href="#card-title25">第25週</a>
+        <a class="list-group-item" href="#card-title24">第24週</a>
+        <a class="list-group-item" href="#card-title23">第23週</a>
+        <a class="list-group-item" href="#card-title22">第22週</a>
+        <a class="list-group-item" href="#card-title21">第21週</a>
+        <a class="list-group-item" href="#card-title20">第20週</a>
+        <a class="list-group-item" href="#card-title19">第19週</a>
+        <a class="list-group-item" href="#card-title18">第18週</a>
+        <a class="list-group-item" href="#card-title17">第17週</a>
+        <a class="list-group-item" href="#card-title16">第16週</a>
+        <a class="list-group-item" href="#card-title15">第15週</a>
+        <a class="list-group-item" href="#card-title14">第14週</a>
+        <a class="list-group-item" href="#card-title13">第13週</a>
+        <a class="list-group-item" href="#card-title12">第12週</a>
+        <a class="list-group-item" href="#card-title11">第11週</a>
+        <a class="list-group-item" href="#card-title10">第10週</a>
+        <a class="list-group-item" href="#card-title9">第9週</a>
+        <a class="list-group-item" href="#card-title8">第8週</a>
+        <a class="list-group-item" href="#card-title7">第7週</a>
+        <a class="list-group-item" href="#card-title6">第6週</a>
+        <a class="list-group-item" href="#card-title5">第5週</a>
+        <a class="list-group-item" href="#card-title4">第4週</a>
+        <a class="list-group-item" href="#card-title3">第3週</a>
+        <a class="list-group-item" href="#card-title2">第2週</a>
+        <a class="list-group-item" href="#card-title1">第1週</a>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">影音週記</h1>
+    </div>
+
+    <div data-bs-target="#navbar-example3" data-bs-spy="scroll" data-bs-root-margin="0px 0px -40%"
+      data-bs-smooth-scroll="true" tabindex="0"
+      class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3 p-3">
+
+      <!-- Modal for Youtube-->
+      <div class="modal fade" id="youtubeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="youtubeModalLabel">第0週</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Youtube -->
+              <div class="ratio ratio-16x9">
+                <iframe class="embed-responsive-item" src="" id="youtubeVideo" allowscriptaccess="always"
+                  allow="autoplay"></iframe>
+              </div>
+              <div class="progress mt-1">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" role="progressbar"
+                  aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                  style="width: 100%"></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button class="btn btn-success" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+              </button> -->
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col" id="card-title26">
+        <div class="card shadow-sm">
+          <img src="./img/vtdemo.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">PHP資料庫網頁設計(泰山)</h5>
+            <h6 class="card-subtitle mb-2 text-muted">職業訓練職類技能介紹 PHP資料庫網頁設計職類</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                >!-- Button trigger modal --<
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal"
+                  data-title="PHP資料庫網頁設計(泰山)" data-src="https://www.youtube.com/embed/DzN1czwBaK4"
+                  data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-bg-light">-</li>
+            <li class="list-group-item text-bg-light">-</li>
+            <li class="list-group-item text-bg-light">-</li>
+            <li class="list-group-item text-bg-light">-</li>
+            <li class="list-group-item text-bg-light">-</li>
+          </ul>
+        </div>
+      </div> -->
+
+      <div class="col" id="card-title25">
+        <div class="card shadow-sm">
+          <img src="./img/vtdemo.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第25週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/9/12~2022/9/15</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <!-- Button trigger modal -->
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第25週"
+                  data-src="https://www.youtube.com/embed/DzN1czwBaK4" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">網頁乙級術科檢定</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">網頁設計實務/結訓座談</li>
+            <li class="list-group-item text-bg-light">-</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title24">
+        <div class="card shadow-sm">
+          <img src="./img/vttube24.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第24週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/9/5~2022/9/9</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第24週"
+                  data-src="https://www.youtube.com/embed/MllKV1Jr-PI" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item text-bg-light">-</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title23">
+        <div class="card shadow-sm">
+          <img src="./img/vttube23.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第23週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/8/29~2022/9/2</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第23週"
+                  data-src="https://www.youtube.com/embed/WndRZzsLojk" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">網頁乙級學科檢定</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title22">
+        <div class="card shadow-sm">
+          <img src="./img/vttube22.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第22週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/8/22~2022/8/26</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第22週"
+                  data-src="https://www.youtube.com/embed/kNGjBccY5ao" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title21">
+        <div class="card shadow-sm">
+          <img src="./img/vttube21.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第21週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/8/15~2022/8/19</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第21週"
+                  data-src="https://www.youtube.com/embed/eWoxbo7q5Hc" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">資訊網路概論</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">班會/聯課/網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title20">
+        <div class="card shadow-sm">
+          <img src="./img/vttube20.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第20週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/8/8~2022/8/12</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第20週"
+                  data-src="https://www.youtube.com/embed/D7l7FJlpRlk" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">資訊網路概論</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title19">
+        <div class="card shadow-sm">
+          <img src="./img/vttube19.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第19週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/8/1~2022/8/5</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第19週"
+                  data-src="https://www.youtube.com/embed/KyECJ0CTyJk" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">資訊網路概論</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title18">
+        <div class="card shadow-sm">
+          <img src="./img/vttube18.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第18週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/7/25~2022/7/29</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第18週"
+                  data-src="https://www.youtube.com/embed/3TXQRWpjdjI" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">資訊網路概論</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title17">
+        <div class="card shadow-sm">
+          <img src="./img/vttube17.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第17週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/7/18~2022/7/22</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第17週"
+                  data-src="https://www.youtube.com/embed/onriTbpt1l8" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">數位媒體應用</li>
+            <li class="list-group-item">班會/數媒應用/聯課/就業分析技巧4</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title16">
+        <div class="card shadow-sm">
+          <img src="./img/vttube16.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第16週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/7/11~2022/7/15</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第16週"
+                  data-src="https://www.youtube.com/embed/Y9AFAmlTCGA" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title15">
+        <div class="card shadow-sm">
+          <img src="./img/vttube15.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第15週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/7/4~2022/7/8</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第15週"
+                  data-src="https://www.youtube.com/embed/Vl39HT9z6BM" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">網頁設計實務</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title14">
+        <div class="card shadow-sm">
+          <img src="./img/vttube14.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第14週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/6/27~2022/7/1</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第14週"
+                  data-src="https://www.youtube.com/embed/vlvqyqrZXSs" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title13">
+        <div class="card shadow-sm">
+          <img src="./img/vttube13.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第13週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/6/20~2022/6/24</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第13週"
+                  data-src="https://www.youtube.com/embed/7RrizsClvJU" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">班會/聯課/數媒應用/網頁設計實務</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title12">
+        <div class="card shadow-sm">
+          <img src="./img/vttube12.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第12週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/6/13~2022/6/17</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第12週"
+                  data-src="https://www.youtube.com/embed/rgF9wO_dUdg" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title11">
+        <div class="card shadow-sm">
+          <img src="./img/vttube11.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第11週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/6/6~2022/6/10</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第11週"
+                  data-src="https://www.youtube.com/embed/h8EgtvE-jLU" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title10">
+        <div class="card shadow-sm">
+          <img src="./img/vttube10.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第10週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/5/30~2022/6/3</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第10週"
+                  data-src="https://www.youtube.com/embed/o_7wzwLMDzc" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item text-bg-light">-</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title9">
+        <div class="card shadow-sm">
+          <img src="./img/vttube9.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第9週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/5/23~2022/5/27</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第9週"
+                  data-src="https://www.youtube.com/embed/2VfsvCGYe70" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">班會/聯課/數媒應用/資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title8">
+        <div class="card shadow-sm">
+          <img src="./img/vttube8.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第8週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/5/16~2022/5/20</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第8週"
+                  data-src="https://www.youtube.com/embed/0HaaLGzPFz8" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title7">
+        <div class="card shadow-sm">
+          <img src="./img/vttube7.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第7週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/5/9~2022/5/13</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第7週"
+                  data-src="https://www.youtube.com/embed/3cwrTfXzyNU" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">網頁動態技術</li>
+            <li class="list-group-item">資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title6">
+        <div class="card shadow-sm">
+          <img src="./img/vttube6.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第6週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/5/2~2022/5/6</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第6週"
+                  data-src="https://www.youtube.com/embed/r3gF4Vuw6wE" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-bg-light">-</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">資訊及通訊科技</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title5">
+        <div class="card shadow-sm">
+          <img src="./img/vttube5.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第5週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/4/25~2022/4/29</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第5週"
+                  data-src="https://www.youtube.com/embed/QSoQb5RmIos" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">班會/性別平等/聯課/資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title4">
+        <div class="card shadow-sm">
+          <img src="./img/vttube4.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第4週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/4/18~2022/4/22</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第4週"
+                  data-src="https://www.youtube.com/embed/9Y9YZew6Sgs" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">職安衛/資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title3">
+        <div class="card shadow-sm">
+          <img src="./img/vttube3.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第3週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/4/11~2022/4/15</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第3週"
+                  data-src="https://www.youtube.com/embed/iAdCtFRhLSM" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title2">
+        <div class="card shadow-sm">
+          <img src="./img/vttube2.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第2週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/4/4~2022/4/8</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第2週"
+                  data-src="https://www.youtube.com/embed/bJQmbm9hUKE" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-bg-light">-</li>
+            <li class="list-group-item text-bg-light">-</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" id="card-title1">
+        <div class="card shadow-sm">
+          <img src="./img/vttube1.jpg" class="d-block w-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">第1週</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022/3/28~2022/4/1</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-sm youtubeVideo-btn" data-bs-toggle="modal" data-title="第1週"
+                  data-src="https://www.youtube.com/embed/cWmsw7VWNrc" data-bs-target="#youtubeModal">檢視</a>
+                <a href="#" class="btn btn-danger btn-sm">編輯</a>
+              </div>
+              <small class="text-muted">-</small>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">報到/生活津貼/學員輔導/聯課活動</li>
+            <li class="list-group-item">導師時間/班會/職訓資源/資料庫程式設計</li>
+            <li class="list-group-item">視覺影像設計</li>
+            <li class="list-group-item">網頁排版編輯</li>
+            <li class="list-group-item">資料庫程式設計</li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">回到頁首</a>
+    </p>
+    <p>-</p>
+  </div>
+
+  <footer class="d-flex flex-wrap justify-content-between align-items-center bg-light text-dark p-3 my-4 border-top">
+    <div class="col-md-9 d-flex align-items-center">
+      <span class="mb-9 mb-md-0 text-muted">&copy; 2022 PHP資料庫網頁設計(泰山)第11101期 01-AlphaLiu</span>
+    </div>
+
+    <ul class="nav col-md-3 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="https://wdaweb.github.io/" target="_blank"><i
+            class="bi bi-github"></i></a></li>
+      <li class="ms-3"><a class="text-muted" href="https://youtu.be/DzN1czwBaK4" target="_blank"><i
+            class="bi bi-youtube"></i></a></li>
+      <li class="ms-3"><a class="text-muted" href="https://zh-tw.facebook.com/tsvts" target="_blank"><i
+            class="bi bi-facebook"></i></a></li>
+    </ul>
+  </footer>
+
+  <!-- Bootstrap’s JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- Dashboard -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+  <!-- <script src="./js/govts.js"></script> -->
+
+  <script>
+    $(document).ready(function () {
+
+      // Modal for Youtube - start
+      let $youtubeSrc;
+      let $youtubeTitle;
+      $('.youtubeVideo-btn').click(function () {
+        $youtubeSrc = $(this).data("src");
+        $youtubeTitle = $(this).data("title");
+        $("#youtubeModalLabel").text($youtubeTitle)
+      });
+      // console.log($youtubeSrc + "," + $youtubeTitle);
+
+      // when the modal is opened autoplay it  
+      $('#youtubeModal').on('shown.bs.modal', function (e) {
+        // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+        $("#youtubeVideo").attr('src', $youtubeSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
+      })
+
+      // stop playing the youtube video when I close the modal
+      $('#youtubeModal').on('hide.bs.modal', function (e) {
+        // a poor man's stop video
+        $("#youtubeVideo").attr('src', $youtubeSrc);
+      })
+      // Modal for Youtube - End
+
+
+      axios.get('./js/ajax_govts.json')
+        .then(function (res) {
+          // console.log('res', res);
+          let data = res.data;
+          let cardText = '';
+          let govtsLabels = [];
+          let govtsDatasetsData = [];
+          data.forEach(myFunction);
+
+          function myFunction(item, index) {
+            // console.log(`<p>${item.項目別}-${item.班次}-${item.人數}</p><br>`);
+            if (item.項目別.indexOf("北基宜花金馬分署 / 職前") != -1) {
+              let carText_boy = Math.round(parseFloat(item.男.split(",").join("")) / parseFloat(item.人數.split(",").join("")) * 10000 / 100);
+              let carText_girl = Math.round(parseFloat(item.女.split(",").join("")) / parseFloat(item.人數.split(",").join("")) * 10000 / 100);
+
+              cardText += `
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <h5 class="card-title">${item.項目別.substr(0, 4)} 班次 ${item.班次}</h5>
+                              <p class="card-text">人數 ${item.人數}</p>
+                              <div class="progress">
+                                  <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label"
+                                      style="width: ${carText_boy}%;" aria-valuenow="${carText_boy}" aria-valuemin="0" aria-valuemax="100">男 ${carText_boy}%</div>
+                              </div>
+                              <p></p>
+                              <div class="progress">
+                                  <div class="progress-bar bg-danger" role="progressbar" aria-label="Example with label"
+                                      style="width: ${carText_girl}%;" aria-valuenow="${carText_girl}" aria-valuemin="0" aria-valuemax="100">女 ${carText_girl}%</div>
+                              </div>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                              <li class="list-group-item">男 ${item.男} 人</li>
+                              <li class="list-group-item">女 ${item.女} 人</li>
+                          </ul>
+                      </div>
+                  </div>                                    
+                  `;
+
+              govtsLabels.push(`${item.項目別.substr(0, 4)}`);
+              govtsDatasetsData.push(`${item.人數.split(",").join("")}`);
+            }
+          }
+          // console.log('govtsLabels', govtsLabels);
+          // console.log('govtsDatasetsData', govtsDatasetsData);
+          const ajaxGovts = $('#ajaxGovts');
+          ajaxGovts.html("");
+          ajaxGovts.append(cardText);
+
+          /* globals Chart:false, feather:false */
+
+          (() => {
+            'use strict'
+
+            feather.replace({ 'aria-hidden': 'true' })
+
+            // Graphs
+            const ctx = document.getElementById('myChart')
+            // eslint-disable-next-line no-unused-vars
+            const myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: govtsLabels,
+                datasets: [{
+                  data: govtsDatasetsData,
+                  lineTension: 0,
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                  borderColor: 'rgb(54, 162, 235)',
+                  borderWidth: 1,
+                  pointBackgroundColor: '#007bff'
+                }]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: false
+                    }
+                  }]
+                },
+                legend: {
+                  display: false
+                }
+              }
+            })
+          })()
+
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () { });
+
+      // document ready  
+    });
+  </script>
+
+</body>
+
+</html>
